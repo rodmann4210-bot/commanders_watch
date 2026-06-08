@@ -3,982 +3,559 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAUNCH WATCH // ROD'S BRIEFING</title>
+<title>Commanders Watch — Your Team. Every Day.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+  :root{
+    --burgundy:#5a1414;
+    --burgundy-deep:#3d0d0d;
+    --burgundy-bright:#7d1f2b;
+    --gold:#ffb612;
+    --gold-dim:#c79a3f;
+    --bg:#120608;
+    --bg-2:#1a0a0d;
+    --panel:#200d11;
+    --panel-2:#270f14;
+    --line:rgba(255,182,18,.22);
+    --line-soft:rgba(255,182,18,.10);
+    --ink:#f6ece0;
+    --muted:#bfa489;
+    --muted-2:#8c7059;
+    --red:#e2574c;
+    --green:#5fb47a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(125,31,43,.45), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(90,20,20,.4), transparent 55%),
+      repeating-linear-gradient(135deg, rgba(255,182,18,.025) 0 2px, transparent 2px 26px),
+      var(--bg);
+    background-attachment:fixed;
+    padding:0 0 48px;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
 
-:root {
-  --bg:       #060810;
-  --panel:    #0b0f1a;
-  --border:   #162030;
-  --glow:     #00e5ff;
-  --hot:      #ff4500;
-  --go:       #00ff88;
-  --warn:     #ffcc00;
-  --dim:      #2a3a4a;
-  --text:     #8aa8c0;
-  --bright:   #d0e8f8;
-  --scanline: rgba(0,229,255,0.025);
-}
+  /* ===== Top ticker ===== */
+  .ticker{
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(90deg,var(--burgundy-deep),var(--burgundy));
+    overflow:hidden;white-space:nowrap;height:34px;display:flex;align-items:center;
+  }
+  .ticker .tag{
+    background:var(--gold);color:var(--burgundy-deep);font-family:'Oswald';font-weight:700;
+    font-size:12px;letter-spacing:1.5px;padding:0 12px;height:34px;display:flex;align-items:center;
+    flex:none;z-index:2;
+  }
+  .ticker .track{display:inline-flex;align-items:center;animation:scroll 70s linear infinite;will-change:transform}
+  .ticker .track span{font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:.4px;color:#f2dcc6;padding:0 26px;position:relative}
+  .ticker .track span::before{content:"◆";color:var(--gold);position:absolute;left:4px;font-size:8px;top:50%;transform:translateY(-50%)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  /* ===== Header ===== */
+  header{padding:26px 0 18px;border-bottom:1px solid var(--line-soft)}
+  .head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .brand{display:flex;align-items:center;gap:16px}
+  .crest{
+    width:54px;height:54px;flex:none;border-radius:6px;
+    background:linear-gradient(160deg,var(--burgundy-bright),var(--burgundy-deep));
+    border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald';font-weight:700;color:var(--gold);font-size:26px;
+    box-shadow:0 6px 22px rgba(0,0,0,.5), inset 0 0 0 3px rgba(18,6,8,.6);
+  }
+  .brand h1{font-family:'Oswald';font-weight:700;font-size:30px;letter-spacing:1px;line-height:1;text-transform:uppercase}
+  .brand h1 .g{color:var(--gold)}
+  .brand .sub{font-family:'Barlow Condensed';font-weight:600;letter-spacing:3px;font-size:12px;color:var(--gold-dim);text-transform:uppercase;margin-top:5px}
+  .status{text-align:right;font-family:'Barlow Condensed';letter-spacing:.5px}
+  .status .live{display:inline-flex;align-items:center;gap:7px;color:var(--gold);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(255,182,18,.7);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,182,18,.6)}70%{box-shadow:0 0 0 9px rgba(255,182,18,0)}100%{box-shadow:0 0 0 0 rgba(255,182,18,0)}}
+  .status .upd{color:var(--muted);font-size:13px;margin-top:4px}
 
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  overflow-x: hidden;
-  font-size: 16px;
-}
+  /* ===== Hero ===== */
+  .hero{
+    margin-top:22px;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    background:
+      linear-gradient(120deg, rgba(61,13,13,.9), rgba(32,13,17,.75)),
+      repeating-linear-gradient(135deg, rgba(255,182,18,.04) 0 2px, transparent 2px 22px);
+    box-shadow:0 18px 50px rgba(0,0,0,.5);
+  }
+  .hero-top{display:flex;align-items:center;justify-content:space-between;background:rgba(255,182,18,.08);border-bottom:1px solid var(--line-soft);padding:9px 18px}
+  .hero-top .lbl{font-family:'Oswald';font-weight:600;letter-spacing:3px;font-size:13px;color:var(--gold);text-transform:uppercase}
+  .hero-top .rec{font-family:'Oswald';font-weight:500;letter-spacing:1px;font-size:14px;color:var(--ink)}
+  .hero-body{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;padding:22px 24px}
+  .matchup .when{font-family:'Barlow Condensed';font-weight:600;letter-spacing:1px;color:var(--gold-dim);text-transform:uppercase;font-size:14px}
+  .matchup .vs{font-family:'Oswald';font-weight:700;font-size:34px;line-height:1.05;margin-top:6px;text-transform:uppercase}
+  .matchup .vs .opp{color:var(--gold)}
+  .matchup .meta{color:var(--muted);font-size:15px;margin-top:10px;font-family:'Barlow Condensed';letter-spacing:.5px}
+  .count{display:flex;gap:10px;align-items:center;justify-content:flex-end}
+  .count .unit{text-align:center;min-width:62px}
+  .count .num{font-family:'Oswald';font-weight:700;font-size:42px;color:var(--gold);line-height:1;text-shadow:0 2px 12px rgba(255,182,18,.25)}
+  .count .cap{font-family:'Barlow Condensed';font-weight:600;letter-spacing:2px;font-size:11px;color:var(--muted-2);text-transform:uppercase;margin-top:5px}
+  .count .colon{font-family:'Oswald';font-weight:600;font-size:34px;color:var(--burgundy-bright);align-self:flex-start;margin-top:-2px}
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    var(--scanline) 2px,
-    var(--scanline) 4px
-  );
-  pointer-events: none;
-  z-index: 999;
-}
+  /* ===== Grid ===== */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:20px}
+  .panel{
+    grid-column:span 6;background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line-soft);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .col-4{grid-column:span 4}.col-8{grid-column:span 8}.col-12{grid-column:span 12}
+  .p-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(90deg,var(--burgundy),var(--burgundy-deep));border-bottom:1px solid var(--line)}
+  .p-head .bar{width:4px;height:18px;background:var(--gold);border-radius:2px;flex:none}
+  .p-head h2{font-family:'Oswald';font-weight:600;letter-spacing:2px;font-size:15px;text-transform:uppercase;flex:1}
+  .p-head .ct{font-family:'Oswald';font-weight:600;font-size:13px;color:var(--gold);letter-spacing:1px}
+  .p-body{padding:8px 0;flex:1}
+  .scroll{max-height:330px;overflow-y:auto}
+  .scroll::-webkit-scrollbar{width:8px}
+  .scroll::-webkit-scrollbar-thumb{background:var(--burgundy-bright);border-radius:6px}
+  .scroll::-webkit-scrollbar-track{background:transparent}
 
-#stars {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.6;
-}
+  /* roster + lists */
+  .grouphd{font-family:'Oswald';font-weight:600;letter-spacing:2px;font-size:12px;color:var(--gold-dim);text-transform:uppercase;padding:10px 16px 4px;border-top:1px solid var(--line-soft)}
+  .grouphd:first-child{border-top:none}
+  .row{display:flex;align-items:center;gap:12px;padding:7px 16px;border-bottom:1px solid rgba(255,255,255,.03);transition:background .15s}
+  .row:hover{background:rgba(255,182,18,.06)}
+  .jersey{font-family:'Oswald';font-weight:700;font-size:15px;color:var(--gold);width:34px;text-align:center;flex:none}
+  .nm{font-weight:600;font-size:15px;flex:1}
+  .pos{font-family:'Barlow Condensed';font-weight:600;letter-spacing:1px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.05);padding:2px 8px;border-radius:4px}
+  .badge{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.5px;font-size:11px;padding:2px 8px;border-radius:4px;text-transform:uppercase}
+  .badge.out{background:rgba(226,87,76,.18);color:var(--red);border:1px solid rgba(226,87,76,.4)}
+  .badge.q{background:rgba(255,182,18,.16);color:var(--gold);border:1px solid rgba(255,182,18,.4)}
 
-.app {
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 22px 18px 48px;
-}
+  /* news */
+  .news a{display:block;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
+  .news a:hover{background:rgba(255,182,18,.06)}
+  .news .hl{font-family:'Oswald';font-weight:500;font-size:15.5px;line-height:1.25}
+  .news a:hover .hl{color:var(--gold)}
+  .news .ds{color:var(--muted);font-size:13.5px;margin-top:4px;line-height:1.4}
+  .news .tm{font-family:'Barlow Condensed';font-weight:600;letter-spacing:1px;font-size:11px;color:var(--muted-2);text-transform:uppercase;margin-top:5px}
 
-/* ─── MASTHEAD ─────────────────────────────────── */
-.masthead {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 14px;
-  margin-bottom: 18px;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+  /* nfc east */
+  .east{display:flex;flex-direction:column}
+  .east .row{justify-content:space-between}
+  .east .tinfo{display:flex;align-items:center;gap:12px}
+  .east img{width:30px;height:30px;flex:none}
+  .east .tn{font-family:'Oswald';font-weight:500;font-size:16px;letter-spacing:.5px}
+  .east .rec{font-family:'Oswald';font-weight:600;font-size:15px;color:var(--gold)}
+  .east .me{outline:1px solid var(--line);background:rgba(255,182,18,.05)}
+  .east .me .tn{color:var(--gold)}
 
-.masthead-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.4rem, 7vw, 3.8rem);
-  letter-spacing: 0.08em;
-  line-height: 1;
-  color: var(--glow);
-  text-shadow: 0 0 28px rgba(0,229,255,0.45), 0 0 60px rgba(0,229,255,0.15);
-  position: relative;
-}
+  /* podcast */
+  .pod a{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
+  .pod a:hover{background:rgba(255,182,18,.06)}
+  .pod .play{width:30px;height:30px;flex:none;border-radius:50%;background:var(--gold);color:var(--burgundy-deep);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+  .pod .et{font-family:'Oswald';font-weight:500;font-size:15px;line-height:1.25}
+  .pod a:hover .et{color:var(--gold)}
+  .pod .ed{font-family:'Barlow Condensed';font-weight:600;letter-spacing:1px;font-size:12px;color:var(--muted-2);text-transform:uppercase;margin-top:4px}
+  .podlinks{display:flex;gap:8px;padding:12px 16px;flex-wrap:wrap}
+  .podlinks a{font-family:'Oswald';font-weight:600;letter-spacing:1px;font-size:12px;text-transform:uppercase;padding:7px 12px;border:1px solid var(--line);border-radius:6px;color:var(--gold);transition:all .15s}
+  .podlinks a:hover{background:var(--gold);color:var(--burgundy-deep)}
 
-.masthead-title::after {
-  content: 'LAUNCH WATCH';
-  position: absolute;
-  inset: 0;
-  color: var(--hot);
-  opacity: 0;
-  animation: glitch 8s infinite;
-  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
-}
+  .empty,.err{padding:22px 16px;color:var(--muted);font-family:'Barlow Condensed';font-size:15px;letter-spacing:.5px}
+  .err{color:var(--red)}
+  .loading{padding:22px 16px;color:var(--muted-2);font-family:'Barlow Condensed';letter-spacing:1px;font-size:14px;text-transform:uppercase}
 
-@keyframes glitch {
-  0%,94%,100%  { opacity:0; transform:translateX(0); }
-  95%          { opacity:0.6; transform:translateX(-3px); }
-  96%          { opacity:0.4; transform:translateX(3px); }
-  97%          { opacity:0; }
-}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line-soft);color:var(--muted-2);font-family:'Barlow Condensed';font-size:13px;letter-spacing:.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer .g{color:var(--gold-dim)}
 
-.masthead-sub {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
-  line-height: 1.9;
-  text-align: right;
-}
+  @media(max-width:900px){
+    .panel{grid-column:span 12}.col-4,.col-8{grid-column:span 12}
+    .hero-body{grid-template-columns:1fr}.count{justify-content:flex-start}
+    .brand h1{font-size:24px}.matchup .vs{font-size:27px}
+  }
 
-.masthead-sub .highlight { color: var(--glow); }
-
-/* ─── TICKER ───────────────────────────────────── */
-.ticker-wrap {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--hot);
-  overflow: hidden;
-  margin-bottom: 18px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  color: var(--hot);
-  padding: 0 14px;
-  white-space: nowrap;
-  border-right: 1px solid var(--border);
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-track {
-  overflow: hidden;
-  flex: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-inner {
-  display: flex;
-  gap: 60px;
-  white-space: nowrap;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  color: var(--text);
-  animation: ticker 40s linear infinite;
-}
-
-.ticker-inner .sep { color: var(--dim); }
-.ticker-inner .go-tag { color: var(--go); }
-.ticker-inner .warn-tag { color: var(--warn); }
-
-@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-/* ─── HERO ─────────────────────────────────────── */
-/* ─── RECENT LAUNCHES STRIP ────────────────────── */
-.recent-section { margin-bottom: 18px; }
-
-.recent-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 8px;
-}
-
-.recent-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--dim);
-  padding: 11px 14px;
-  position: relative;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.recent-card.r-suc { border-left-color: var(--glow); }
-.recent-card.r-fail { border-left-color: var(--hot); }
-
-.recent-card:hover { background:#0d1420; border-color: rgba(0,229,255,0.25); }
-
-.recent-name {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--bright);
-  margin-bottom: 5px;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.recent-meta {
-  font-size: 0.66rem;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
-.recent-meta em { color: var(--dim); font-style: normal; }
-
-.recent-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
-.recent-tplus {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.05em;
-  color: var(--go);
-}
-.recent-tplus.fail { color: var(--hot); }
-
-.recent-yt {
-  font-size: 0.66rem;
-  color: var(--hot);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  border: 1px solid rgba(255,69,0,0.4);
-  padding: 3px 8px;
-  border-radius: 2px;
-  transition: all 0.15s;
-}
-.recent-yt:hover { background: rgba(255,69,0,0.12); }
-
-.hero {
-  background: linear-gradient(135deg, #0d1525 0%, #0a0f1c 100%);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--glow);
-  border-radius: 2px;
-  padding: 22px 24px;
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
-}
-
-.hero-badge {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  color: var(--glow);
-  border: 1px solid var(--glow);
-  display: inline-block;
-  padding: 2px 10px;
-  margin-bottom: 10px;
-  opacity: 0.8;
-}
-
-.hero-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.7rem, 4.5vw, 2.4rem);
-  letter-spacing: 0.06em;
-  color: var(--bright);
-  line-height: 1.1;
-  margin-bottom: 10px;
-}
-
-.hero-meta {
-  font-size: 0.82rem;
-  color: var(--text);
-  line-height: 2.1;
-  margin-bottom: 14px;
-}
-
-.hero-meta strong { color: var(--bright); }
-
-.hero-countdown {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.cd-block {
-  text-align: center;
-  background: rgba(0,0,0,0.4);
-  border: 1px solid var(--border);
-  padding: 10px 16px;
-  min-width: 68px;
-}
-
-.cd-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.4rem;
-  color: var(--glow);
-  line-height: 1;
-  text-shadow: 0 0 12px rgba(0,229,255,0.5);
-}
-
-.cd-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
-  margin-top: 3px;
-}
-
-/* ─── WEATHER STRIP ────────────────────────────── */
-.weather-strip {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--glow);
-  padding: 10px 14px;
-  margin-top: 14px;
-  font-size: 0.78rem;
-}
-
-.weather-strip .wx-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.15em;
-  color: var(--glow);
-  white-space: nowrap;
-}
-
-.wx-item {
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.wx-item strong { color: var(--bright); }
-.wx-item.wx-warn { color: var(--warn); }
-.wx-item.wx-good { color: var(--go); }
-
-.wx-loading { color: var(--dim); font-size: 0.72rem; font-style: italic; }
-
-/* ─── GRID ─────────────────────────────────────── */
-.section-header {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.2em;
-  color: var(--dim);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
-  margin-bottom: 12px;
-  margin-top: 4px;
-}
-
-.grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--dim);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  padding: 13px 16px;
-  transition: border-color 0.15s, background 0.15s;
-  cursor: default;
-}
-
-.card:hover {
-  background: #0d1420;
-  border-color: rgba(0,229,255,0.25);
-}
-
-.card.s-go   { border-left-color: var(--go); }
-.card.s-tbd  { border-left-color: var(--warn); }
-.card.s-hold { border-left-color: var(--hot); }
-
-.card-name {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--bright);
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-meta {
-  font-size: 0.74rem;
-  color: var(--text);
-  line-height: 1.7;
-}
-
-.card-meta em { color: var(--dim); font-style: normal; }
-
-.card-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-.card-cd {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.06em;
-  color: var(--glow);
-  white-space: nowrap;
-}
-
-.card-date {
-  font-size: 0.68rem;
-  color: var(--dim);
-  white-space: nowrap;
-  text-align: right;
-}
-
-.badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 2px 7px;
-  border-radius: 2px;
-}
-
-.b-go   { background: rgba(0,255,136,0.12); color:var(--go);  border:1px solid rgba(0,255,136,0.4); }
-.b-tbd  { background: rgba(255,204,0,0.1);  color:var(--warn); border:1px solid rgba(255,204,0,0.35); }
-.b-hold { background: rgba(255,69,0,0.12);  color:var(--hot);  border:1px solid rgba(255,69,0,0.4); }
-.b-suc  { background: rgba(0,229,255,0.1);  color:var(--glow); border:1px solid rgba(0,229,255,0.3); }
-
-.yt-link {
-  font-size: 0.68rem;
-  color: var(--hot);
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  opacity: 0.8;
-  transition: opacity 0.15s;
-}
-.yt-link:hover { opacity: 1; }
-
-/* ─── FOOTER ───────────────────────────────────── */
-.foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-  font-size: 0.72rem;
-  color: var(--dim);
-  letter-spacing: 0.1em;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.foot .next-refresh { color: var(--text); }
-
-/* ─── LOADING / ERROR ──────────────────────────── */
-.loading-msg {
-  text-align: center;
-  padding: 48px 20px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.15em;
-  color: var(--dim);
-}
-
-.loading-msg .spinner {
-  display: block;
-  width: 36px; height: 36px;
-  border: 2px solid var(--dim);
-  border-top-color: var(--glow);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 16px;
-}
-
-@keyframes spin { to{transform:rotate(360deg)} }
-
-.error-msg {
-  border: 1px solid var(--hot);
-  padding: 14px 18px;
-  font-size: 0.8rem;
-  color: var(--hot);
-  background: rgba(255,69,0,0.06);
-  margin-bottom: 16px;
-}
+  /* ===== Film Room drawer ===== */
+  .film-launch{
+    position:fixed;right:22px;bottom:22px;z-index:40;display:flex;align-items:center;gap:10px;
+    background:linear-gradient(160deg,var(--gold),var(--gold-dim));color:var(--burgundy-deep);
+    font-family:'Oswald';font-weight:700;letter-spacing:1.5px;font-size:14px;text-transform:uppercase;
+    border:none;border-radius:50px;padding:14px 22px;cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 0 1px rgba(255,182,18,.4);transition:transform .15s,box-shadow .15s;
+  }
+  .film-launch:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.6),0 0 0 1px var(--gold)}
+  .film-launch .ic{font-size:17px}
+  .scrim{position:fixed;inset:0;background:rgba(8,3,4,.66);backdrop-filter:blur(3px);z-index:50;opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);z-index:60;transform:translateX(102%);
+    background:linear-gradient(180deg,var(--bg-2),var(--bg));border-left:1px solid var(--line);
+    box-shadow:-20px 0 60px rgba(0,0,0,.6);transition:transform .3s cubic-bezier(.4,.0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0)}
+  .drawer-hd{display:flex;align-items:center;gap:12px;padding:18px 20px;background:linear-gradient(90deg,var(--burgundy),var(--burgundy-deep));border-bottom:1px solid var(--line)}
+  .drawer-hd .bar{width:4px;height:24px;background:var(--gold);border-radius:2px}
+  .drawer-hd h2{font-family:'Oswald';font-weight:700;letter-spacing:2px;font-size:19px;text-transform:uppercase;flex:1}
+  .drawer-hd button{background:none;border:1px solid var(--line);color:var(--gold);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:18px;line-height:1;transition:all .15s}
+  .drawer-hd button:hover{background:var(--gold);color:var(--burgundy-deep)}
+  .drawer-body{padding:18px 20px;overflow-y:auto;flex:1}
+  .drawer-body::-webkit-scrollbar{width:8px}.drawer-body::-webkit-scrollbar-thumb{background:var(--burgundy-bright);border-radius:6px}
+  .src{margin-bottom:24px}
+  .src-hd{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+  .src-hd .nm{font-family:'Oswald';font-weight:600;letter-spacing:1.5px;font-size:16px;text-transform:uppercase;color:var(--gold)}
+  .src-hd .tag{font-family:'Barlow Condensed';font-weight:600;letter-spacing:1px;font-size:11px;text-transform:uppercase;color:var(--muted-2)}
+  .jump{display:flex;gap:8px;margin-bottom:12px}
+  .jump input{flex:1;background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;color:var(--ink);font-family:'Barlow';font-size:14px;padding:10px 12px;outline:none}
+  .jump input:focus{border-color:var(--line)}
+  .jump button{background:var(--burgundy-bright);border:1px solid var(--line-soft);color:var(--ink);font-family:'Oswald';font-weight:600;letter-spacing:1px;font-size:13px;text-transform:uppercase;border-radius:8px;padding:0 16px;cursor:pointer;transition:background .15s}
+  .jump button:hover{background:var(--gold);color:var(--burgundy-deep)}
+  .links{display:flex;flex-direction:column;gap:8px}
+  .links a{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;font-family:'Barlow';font-weight:500;font-size:14.5px;transition:all .15s}
+  .links a:hover{border-color:var(--line);background:var(--panel-2);color:var(--gold);transform:translateX(3px)}
+  .links a .ar{margin-left:auto;color:var(--muted-2);font-size:13px}
+  .links a:hover .ar{color:var(--gold)}
+  .drawer-note{font-family:'Barlow Condensed';font-size:12.5px;letter-spacing:.4px;color:var(--muted-2);line-height:1.5;border-top:1px solid var(--line-soft);padding-top:14px}
+  .drawer-note .g{color:var(--gold-dim)}
 </style>
 </head>
 <body>
 
-<canvas id="stars"></canvas>
-
-<div class="app">
-
-  <div class="masthead">
-    <div class="masthead-title">LAUNCH WATCH</div>
-    <div class="masthead-sub">
-      ROD'S DAILY BRIEFING<br>
-      <span class="highlight" id="today-date">——</span><br>
-      DATA: THE SPACE DEVS LL2
-    </div>
-  </div>
-
-  <div class="ticker-wrap">
-    <div class="ticker-label">UPCOMING</div>
-    <div class="ticker-track">
-      <div class="ticker-inner" id="ticker"><span>LOADING LAUNCH DATA...</span></div>
-    </div>
-  </div>
-
-  <div class="recent-section" id="recentSection" style="display:none">
-    <div class="section-header">RECENT LAUNCHES // LAST 3 · REPLAY</div>
-    <div class="recent-grid" id="recentGrid"></div>
-  </div>
-
-  <div id="heroSection"></div>
-
-  <div class="section-header">LAUNCH QUEUE // NEXT 8</div>
-  <div class="grid" id="launchGrid">
-    <div class="loading-msg">
-      <span class="spinner"></span>
-      ACQUIRING SIGNAL...
-    </div>
-  </div>
-
-  <div class="foot">
-    <span>LAUNCH WATCH · ROD GRIMES · PONTIAC/KIRKWOOD MO</span>
-    <span class="next-refresh">AUTO-REFRESH: <span id="refreshCountdown">——</span></span>
-  </div>
-
+<div class="ticker">
+  <div class="tag">HTTC&nbsp;WIRE</div>
+  <div class="track" id="ticker"><span>Loading the latest around the league…</span></div>
 </div>
 
-<script>
-/* ── STARFIELD ─────────────────────────────────── */
-(function(){
-  const c = document.getElementById('stars');
-  const ctx = c.getContext('2d');
-  let stars = [];
-  function resize(){ c.width=window.innerWidth; c.height=window.innerHeight; }
-  function init(){
-    resize();
-    stars = Array.from({length:160}, ()=>({
-      x:Math.random()*c.width, y:Math.random()*c.height,
-      r:Math.random()*1.2+0.2, o:Math.random()*0.6+0.1, s:(Math.random()-0.5)*0.05
-    }));
-  }
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    stars.forEach(s=>{
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(180,220,255,${s.o})`; ctx.fill();
-      s.o+=s.s; if(s.o>0.7||s.o<0.05) s.s*=-1;
-    });
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',resize);
-  init(); draw();
-})();
-
-/* ── HELPERS ───────────────────────────────────── */
-function countdown(net){
-  const diff = new Date(net)-Date.now();
-  if(diff<=0){
-    // Post-liftoff: count UP as T+
-    const up = Math.abs(diff);
-    const d=Math.floor(up/86400000),
-          h=Math.floor((up%86400000)/3600000),
-          m=Math.floor((up%3600000)/60000),
-          s=Math.floor((up%60000)/1000);
-    const str = d>0?`T+${d}D ${String(h).padStart(2,'0')}H`:
-                h>0?`T+${String(h).padStart(2,'0')}H ${String(m).padStart(2,'0')}M`:
-                    `T+${String(m).padStart(2,'0')}M ${String(s).padStart(2,'0')}S`;
-    return {str,d,h,m,s,elapsed:true};
-  }
-  const d=Math.floor(diff/86400000),
-        h=Math.floor((diff%86400000)/3600000),
-        m=Math.floor((diff%3600000)/60000),
-        s=Math.floor((diff%60000)/1000);
-  const str = d>0?`T-${d}D ${String(h).padStart(2,'0')}H`:
-              h>0?`T-${String(h).padStart(2,'0')}H ${String(m).padStart(2,'0')}M`:
-                  `T-${String(m).padStart(2,'0')}M ${String(s).padStart(2,'0')}S`;
-  return {str,d,h,m,s,elapsed:false};
-}
-
-// T+ format for recent launches: days/hours
-function countUp(net){
-  const up = Date.now()-new Date(net);
-  if(up<0) return 'T+00H';
-  const d=Math.floor(up/86400000),
-        h=Math.floor((up%86400000)/3600000),
-        m=Math.floor((up%3600000)/60000);
-  if(d>0) return `T+${d}D ${String(h).padStart(2,'0')}H`;
-  if(h>0) return `T+${String(h).padStart(2,'0')}H ${String(m).padStart(2,'0')}M`;
-  return `T+${String(m).padStart(2,'0')}M`;
-}
-
-function fmtDate(net){
-  if(!net) return 'TBD';
-  return new Date(net).toLocaleDateString('en-US',{
-    month:'short',day:'numeric',year:'numeric',
-    hour:'2-digit',minute:'2-digit',timeZoneName:'short'
-  });
-}
-
-function statusClass(a){ a=(a||'').toLowerCase(); return a==='go'?'s-go':a==='hold'?'s-hold':'s-tbd'; }
-function badgeClass(a){  a=(a||'').toLowerCase(); return a==='go'?'b-go':a==='hold'?'b-hold':a==='success'?'b-suc':'b-tbd'; }
-function ytLink(n){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent((n||'')+' launch livestream'); }
-
-/* ── WEATHER ───────────────────────────────────── */
-// Fallback coords for well-known launch sites when API returns no lat/lon
-const PAD_COORDS = {
-  // Cape Canaveral / KSC
-  'cape canaveral':           { lat: 28.3922, lon: -80.6077 },
-  'kennedy space center':     { lat: 28.5729, lon: -80.6490 },
-  'slc-40':                   { lat: 28.5618, lon: -80.5772 },
-  'lc-39a':                   { lat: 28.6083, lon: -80.6042 },
-  'slc-41':                   { lat: 28.5834, lon: -80.5830 },
-  // Vandenberg
-  'vandenberg':               { lat: 34.7420, lon: -120.5724 },
-  'slc-4e':                   { lat: 34.6321, lon: -120.6107 },
-  'slc-4w':                   { lat: 34.6360, lon: -120.6130 },
-  // Boca Chica / Starbase
-  'boca chica':               { lat: 25.9969, lon: -97.1571 },
-  'starbase':                 { lat: 25.9969, lon: -97.1571 },
-  // Wallops
-  'wallops':                  { lat: 37.9402, lon: -75.4664 },
-  // CCAFS
-  'ccafs':                    { lat: 28.4889, lon: -80.5778 },
-  // New Zealand / RocketLab
-  'mahia':                    { lat: -39.2596, lon: 177.8646 },
-  'launch complex 1':         { lat: -39.2596, lon: 177.8646 },
-  // Kwajalein / SpaceX
-  'omelek':                   { lat:  9.0483, lon: 167.7430 },
-  // Plesetsk
-  'plesetsk':                 { lat: 62.9271, lon: 40.5777 },
-  // Baikonur
-  'baikonur':                 { lat: 45.9200, lon: 63.3420 },
-  // Jiuquan
-  'jiuquan':                  { lat: 40.9606, lon: 100.2983 },
-  // Tanegashima
-  'tanegashima':              { lat: 30.3992, lon: 130.9707 },
-  // Guiana Space Centre
-  'kourou':                   { lat:  5.2364, lon: -52.7695 },
-  'guiana':                   { lat:  5.2364, lon: -52.7695 },
-};
-
-function resolveCoords(lat, lon, padName, locName, missionName) {
-  // Use API coords if present and non-zero — confirmed pad
-  if (lat && lon && (Math.abs(lat) > 0.01 || Math.abs(lon) > 0.01)) return { lat, lon, estimate:false };
-  // Try matching pad name or location name against known sites — still confirmed location
-  const search = ((padName||'') + ' ' + (locName||'')).toLowerCase();
-  for (const [key, coords] of Object.entries(PAD_COORDS)) {
-    if (search.includes(key)) return { ...coords, estimate:false };
-  }
-  // Last resort: infer from mission/rocket name — flagged as ESTIMATE
-  const mission = (missionName||'').toLowerCase();
-  if (mission.includes('starlink') || mission.includes('falcon 9') || mission.includes('falcon heavy') || mission.includes('crew dragon') || mission.includes('cargo dragon')) {
-    return { ...PAD_COORDS['cape canaveral'], estimate:true, site:'Cape Canaveral (est.)' };
-  }
-  if (mission.includes('antares') || mission.includes('cygnus')) {
-    return { ...PAD_COORDS['wallops'], estimate:true, site:'Wallops (est.)' };
-  }
-  if (mission.includes('electron')) {
-    return { ...PAD_COORDS['mahia'], estimate:true, site:'Mahia (est.)' };
-  }
-  if (mission.includes('long march') || mission.includes('tianzhou') || mission.includes('shenzhou')) {
-    return { ...PAD_COORDS['jiuquan'], estimate:true, site:'Jiuquan (est.)' };
-  }
-  return null;
-}
-
-// Open-Meteo (free, no key): fetch by lat/lon
-const WMO_CODES = {
-  0:'Clear',1:'Mostly Clear',2:'Partly Cloudy',3:'Overcast',
-  45:'Foggy',48:'Icy Fog',51:'Light Drizzle',53:'Drizzle',55:'Heavy Drizzle',
-  61:'Light Rain',63:'Rain',65:'Heavy Rain',71:'Light Snow',73:'Snow',75:'Heavy Snow',
-  80:'Rain Showers',81:'Heavy Showers',82:'Violent Showers',
-  95:'Thunderstorm',96:'Thunderstorm+Hail',99:'Thunderstorm+Heavy Hail'
-};
-
-function windDir(deg){
-  const dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-  return dirs[Math.round(deg/22.5)%16];
-}
-
-async function fetchWeather(lat, lon, padName){
-  if(!lat||!lon) return null;
-  try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weathercode,windspeed_10m,winddirection_10m,precipitation_probability&wind_speed_unit=mph&temperature_unit=fahrenheit&forecast_days=1`;
-    const res = await fetch(url);
-    if(!res.ok) return null;
-    const d = await res.json();
-    const c = d.current;
-    return {
-      temp: Math.round(c.temperature_2m),
-      code: c.weathercode,
-      desc: WMO_CODES[c.weathercode] || 'Unknown',
-      wind: Math.round(c.windspeed_10m),
-      windDir: windDir(c.winddirection_10m),
-      precip: c.precipitation_probability
-    };
-  } catch(e){ return null; }
-}
-
-function weatherIcon(code){
-  if(code===0||code===1) return '☀️';
-  if(code===2||code===3) return '⛅';
-  if(code>=45&&code<=48) return '🌫️';
-  if(code>=51&&code<=65) return '🌧️';
-  if(code>=71&&code<=75) return '❄️';
-  if(code>=80&&code<=82) return '🌦️';
-  if(code>=95) return '⛈️';
-  return '🌡️';
-}
-
-function renderWeather(wx, padName, container, estimate, siteLabel){
-  if(!wx){
-    const site = padName && padName !== 'Pad TBD' ? padName : 'this site';
-    container.innerHTML=`<span class="wx-item" style="color:var(--dim)">⛅ Weather data unavailable for <strong style="color:var(--text)">${site}</strong></span>`;
-    return;
-  }
-  const precipClass = wx.precip>50 ? 'wx-warn' : wx.precip>20 ? '' : 'wx-good';
-  const label = estimate
-    ? `<span class="wx-label" style="color:var(--warn)" title="Pad not yet assigned — using likely site">⚠ EST. WX</span>`
-    : `<span class="wx-label">⛅ SITE WX</span>`;
-  const siteNote = estimate && siteLabel
-    ? `<span class="wx-item" style="color:var(--warn);font-style:italic">📍 ${siteLabel}</span>`
-    : '';
-  container.innerHTML = `
-    ${label}
-    ${siteNote}
-    <span class="wx-item">${weatherIcon(wx.code)} <strong>${wx.desc}</strong></span>
-    <span class="wx-item">🌡 <strong>${wx.temp}°F</strong></span>
-    <span class="wx-item">💨 <strong>${wx.wind} mph ${wx.windDir}</strong></span>
-    <span class="wx-item ${precipClass}">🌧 Precip: <strong>${wx.precip}%</strong></span>
-  `;
-}
-
-/* ── HERO ──────────────────────────────────────── */
-let heroTimer = null;
-
-async function renderHero(l){
-  if(!l){ document.getElementById('heroSection').innerHTML=''; return; }
-  const net    = l.net;
-  const rocket = l.rocket?.configuration?.name||'?';
-  const org    = l.launch_service_provider?.name||'';
-  const pad    = l.pad?.name||'';
-  const loc    = l.pad?.location?.name||'';
-  const lat    = l.pad?.latitude;
-  const lon    = l.pad?.longitude;
-  const coords = resolveCoords(lat, lon, pad, loc, l.name);
-  const status = l.status?.abbrev||'TBD';
-
-  function update(){
-    const {d,h,m,s}=countdown(net);
-    const el=document.getElementById('hero-cd');
-    if(el) el.innerHTML=`
-      <div class="cd-block"><div class="cd-num">${String(d).padStart(2,'0')}</div><div class="cd-label">DAYS</div></div>
-      <div class="cd-block"><div class="cd-num">${String(h).padStart(2,'0')}</div><div class="cd-label">HRS</div></div>
-      <div class="cd-block"><div class="cd-num">${String(m).padStart(2,'0')}</div><div class="cd-label">MIN</div></div>
-      <div class="cd-block"><div class="cd-num">${String(s).padStart(2,'0')}</div><div class="cd-label">SEC</div></div>`;
-  }
-
-  document.getElementById('heroSection').innerHTML=`
-    <div class="hero" style="margin-bottom:16px">
-      <div class="hero-badge">▶ NEXT LAUNCH</div>
-      <div class="hero-name">${l.name||'MISSION TBD'}</div>
-      <div class="hero-meta">
-        🚀 <strong>${rocket}</strong>${org?' · '+org:''}<br>
-        📍 ${pad||loc||'Pad TBD'}${pad&&loc?', '+loc:''}<br>
-        📅 ${fmtDate(net)}&nbsp;&nbsp;
-        <span class="badge ${badgeClass(status)}">${status}</span>
-      </div>
-      <div class="hero-countdown" id="hero-cd"></div>
-      <div class="weather-strip" id="hero-wx">
-        <span class="wx-loading">Fetching launch site weather...</span>
-      </div>
-      <div style="margin-top:12px">
-        <a class="yt-link" href="${ytLink(l.name)}" target="_blank">▶ FIND ON YOUTUBE</a>
-      </div>
-    </div>`;
-
-  if(heroTimer) clearInterval(heroTimer);
-  update();
-  heroTimer = setInterval(update, 1000);
-
-  // Fetch weather async after render — isolated so a failure never breaks the page
-  try {
-    const wx = await fetchWeather(coords?.lat, coords?.lon, pad||loc);
-    const wxEl = document.getElementById('hero-wx');
-    if(wxEl) renderWeather(wx, pad||loc, wxEl, coords?.estimate, coords?.site);
-  } catch(e){
-    const wxEl = document.getElementById('hero-wx');
-    if(wxEl) wxEl.innerHTML = '<span class="wx-item" style="color:var(--dim)">⛅ Weather lookup failed</span>';
-  }
-}
-
-/* ── RECENT LAUNCHES ───────────────────────────── */
-function renderRecent(launches){
-  const section = document.getElementById('recentSection');
-  const grid = document.getElementById('recentGrid');
-  if(!launches || !launches.length){ section.style.display='none'; return; }
-  try {
-    grid.innerHTML = launches.map(l=>{
-      const stat = l.status?.abbrev||'';
-      const statName = (l.status?.name||'').toLowerCase();
-      const success = statName.includes('success') || stat==='Success';
-      const failed  = statName.includes('fail') || statName.includes('partial');
-      const rock = l.rocket?.configuration?.name||'?';
-      const org  = l.launch_service_provider?.abbrev||l.launch_service_provider?.name||'';
-      const loc  = l.pad?.location?.name||'';
-      const cls  = success ? 'r-suc' : failed ? 'r-fail' : '';
-      const tpCls = failed ? 'fail' : '';
-      return `
-        <div class="recent-card ${cls}" data-net="${l.net||''}">
-          <div class="recent-name">${l.name||'Mission'}</div>
-          <div class="recent-meta">
-            🚀 ${rock}${org?' <em>·</em> '+org:''}<br>
-            📍 <em>${loc||'—'}</em>${stat?` <em>·</em> ${stat}`:''}
-          </div>
-          <div class="recent-bottom">
-            <span class="recent-tplus ${tpCls}" data-net="${l.net||''}">${l.net?countUp(l.net):'—'}</span>
-            <a class="recent-yt" href="${ytLink(l.name)}" target="_blank">▶ REPLAY</a>
-          </div>
-        </div>`;
-    }).join('');
-    section.style.display='block';
-  } catch(e){
-    section.style.display='none';
-  }
-}
-
-function startRecentCountUp(){
-  setInterval(()=>{
-    document.querySelectorAll('.recent-tplus[data-net]').forEach(el=>{
-      const net = el.getAttribute('data-net');
-      if(net) el.textContent = countUp(net);
-    });
-  }, 60000); // minute resolution is plenty for T+ days/hours
-}
-
-/* ── GRID ──────────────────────────────────────── */
-function renderGrid(launches){
-  const grid = document.getElementById('launchGrid');
-  if(!launches.length){ grid.innerHTML='<div style="text-align:center;padding:30px;color:var(--dim);font-size:0.8rem">NO LAUNCH DATA</div>'; return; }
-  try {
-    const queue = launches.slice(1);
-    grid.innerHTML = queue.map((l,i)=>{
-    const cd   = countdown(l.net);
-    const stat = l.status?.abbrev||'TBD';
-    const rock = l.rocket?.configuration?.name||'?';
-    const org  = l.launch_service_provider?.abbrev||l.launch_service_provider?.name||'';
-    const loc  = l.pad?.location?.name||'Pad TBD';
-    return `
-      <div class="card ${statusClass(stat)}" data-idx="${i+1}">
+<div class="wrap">
+  <header>
+    <div class="head">
+      <div class="brand">
+        <div class="crest">W</div>
         <div>
-          <div class="card-name">${l.name||'TBD'}</div>
-          <div class="card-meta">
-            🚀 ${rock}${org?' <em>·</em> '+org:''}&nbsp;&nbsp;📍 <em>${loc}</em>
-          </div>
+          <h1>COMMANDERS <span class="g">WATCH</span></h1>
+          <div class="sub">Your Team · Every Day · Burgundy &amp; Gold</div>
         </div>
-        <div class="card-right">
-          <div class="card-cd">${cd.str}</div>
-          <div class="card-date">${fmtDate(l.net)}</div>
-          <span class="badge ${badgeClass(stat)}">${stat}</span>
-          <a class="yt-link" href="${ytLink(l.name)}" target="_blank">▶ YT</a>
+      </div>
+      <div class="status">
+        <div class="live"><span class="dot"></span> Live Feed</div>
+        <div class="upd" id="updated">Syncing…</div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-top">
+        <div class="lbl" id="heroLbl">Next Up</div>
+        <div class="rec" id="record">—</div>
+      </div>
+      <div class="hero-body">
+        <div class="matchup">
+          <div class="when" id="gameWhen">—</div>
+          <div class="vs" id="gameVs">Loading schedule…</div>
+          <div class="meta" id="gameMeta"></div>
         </div>
-      </div>`;
-    }).join('');
-  } catch(e){
-    grid.innerHTML = `<div class="error-msg">⚠ Could not render launch queue: ${e.message}</div>`;
+        <div class="count" id="countdown"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="panel col-8">
+      <div class="p-head"><span class="bar"></span><h2>Roster &amp; Depth</h2><span class="ct" id="rosterCt"></span></div>
+      <div class="p-body scroll" id="roster"><div class="loading">Pulling roster…</div></div>
+    </section>
+
+    <section class="panel col-4">
+      <div class="p-head"><span class="bar"></span><h2>Injury Report</h2><span class="ct" id="injCt"></span></div>
+      <div class="p-body scroll" id="injuries"><div class="loading">Checking the report…</div></div>
+    </section>
+
+    <section class="panel col-8">
+      <div class="p-head"><span class="bar"></span><h2>Around the League</h2><span class="ct">NFL Wire</span></div>
+      <div class="p-body scroll news" id="news"><div class="loading">Loading headlines…</div></div>
+    </section>
+
+    <section class="panel col-4">
+      <div class="p-head"><span class="bar"></span><h2>NFC East</h2><span class="ct">Standings</span></div>
+      <div class="p-body east" id="east"><div class="loading">Loading division…</div></div>
+    </section>
+
+    <section class="panel col-12">
+      <div class="p-head"><span class="bar"></span><h2>Locked On Commanders — Latest Episodes</h2><span class="ct">Daily Pod</span></div>
+      <div class="p-body pod" id="pod"><div class="loading">Fetching episodes…</div></div>
+    </section>
+  </div>
+
+  <footer>
+    <div>Data: <span class="g">ESPN</span> (scores · roster · injuries · news) · <span class="g">iTunes / Locked On</span> (podcast). Keyless public feeds.</div>
+    <div>Auto-refresh every 5 min · <span class="g">⚠ Unofficial endpoints — may occasionally lag</span></div>
+  </footer>
+</div>
+
+<button class="film-launch" id="filmOpen"><span class="ic">🎞</span> Film Room</button>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-hd">
+    <span class="bar"></span>
+    <h2>Film Room</h2>
+    <button id="filmClose" aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-body">
+
+    <div class="src">
+      <div class="src-hd"><span class="nm">Pro Football Reference</span><span class="tag">Stats · Free</span></div>
+      <div class="jump">
+        <input id="pfrInput" list="playerList" placeholder="Jump to a player…">
+        <button id="pfrGo">Go</button>
+      </div>
+      <div class="links">
+        <a href="https://www.pro-football-reference.com/teams/was/2026.htm" target="_blank" rel="noopener">Commanders — 2026 Season <span class="ar">↗</span></a>
+        <a href="https://www.pro-football-reference.com/teams/was/2026_roster.htm" target="_blank" rel="noopener">Roster &amp; Snap Counts <span class="ar">↗</span></a>
+        <a href="https://www.pro-football-reference.com/teams/was/" target="_blank" rel="noopener">Franchise Hub &amp; History <span class="ar">↗</span></a>
+        <a href="https://www.pro-football-reference.com/years/2026/" target="_blank" rel="noopener">League Leaders &amp; Standings <span class="ar">↗</span></a>
+      </div>
+    </div>
+
+    <div class="src">
+      <div class="src-hd"><span class="nm">PFF</span><span class="tag">Grades · Subscription</span></div>
+      <div class="jump">
+        <input id="pffInput" list="playerList" placeholder="Find a player on PFF…">
+        <button id="pffGo">Go</button>
+      </div>
+      <div class="links">
+        <a href="https://www.pff.com/nfl/teams/washington-commanders" target="_blank" rel="noopener">Commanders Team Page <span class="ar">↗</span></a>
+        <a href="https://www.pff.com/nfl/grades" target="_blank" rel="noopener">NFL Player Grades <span class="ar">↗</span></a>
+        <a href="https://www.pff.com/nfl/positions/depth-chart" target="_blank" rel="noopener">Depth Charts <span class="ar">↗</span></a>
+      </div>
+    </div>
+
+    <div class="drawer-note">
+      Links open in a new tab — PFF and PFR both block being shown inside an in-app frame, and a <span class="g">PFF login won't carry into an embedded view</span> anyway. Player "Go" routes through each site's search, so spelling close is fine.
+    </div>
+  </div>
+</aside>
+<datalist id="playerList"></datalist>
+
+<script>
+const TEAM_ID = 28;                  // Washington Commanders
+const EAST = [                       // NFC East team IDs
+  {id:6,  name:"Cowboys"},
+  {id:21, name:"Eagles"},
+  {id:19, name:"Giants"},
+  {id:28, name:"Commanders"}
+];
+const PODCAST_APPLE_ID = "1144183096";
+const SITE = "https://site.api.espn.com/apis/site/v2/sports/football/nfl";
+
+let nextGameDate = null;
+let ROSTER_NAMES = [];
+
+const $ = id => document.getElementById(id);
+async function getJSON(url){
+  const r = await fetch(url,{cache:"no-store"});
+  if(!r.ok) throw new Error(r.status);
+  return r.json();
+}
+function relTime(d){
+  const s=(Date.now()-new Date(d).getTime())/1000;
+  if(s<3600) return Math.max(1,Math.floor(s/60))+"m ago";
+  if(s<86400) return Math.floor(s/3600)+"h ago";
+  return Math.floor(s/86400)+"d ago";
+}
+
+/* ---------- Schedule / Hero ---------- */
+async function loadSchedule(){
+  try{
+    let data = await getJSON(`${SITE}/teams/${TEAM_ID}/schedule`);
+    let events = (data.events||[]).slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+    const now = Date.now();
+    let next = events.find(e=>new Date(e.date).getTime() > now - 3*3600*1000);
+    if(!next && events.length) next = events[events.length-1];
+    if(!next){ $("gameVs").textContent="Schedule TBD"; return; }
+
+    nextGameDate = new Date(next.date);
+    const comp = (next.competitions&&next.competitions[0])||{};
+    const cs = comp.competitors||[];
+    const us = cs.find(c=>String(c.team&&c.team.id)===String(TEAM_ID)) || {};
+    const them = cs.find(c=>String(c.team&&c.team.id)!==String(TEAM_ID)) || {};
+    const home = us.homeAway==="home";
+    const oppName = (them.team&&(them.team.shortDisplayName||them.team.displayName))||next.shortName||"Opponent";
+    const seasonType = (next.seasonType&&next.seasonType.name)|| (comp.type&&comp.type.text) || "";
+
+    $("heroLbl").textContent = /pre/i.test(seasonType)?"Next Up · Preseason":"Next Up";
+    $("gameVs").innerHTML = (home?"vs ":"@ ")+`<span class="opp">${oppName}</span>`;
+    $("gameWhen").textContent = nextGameDate.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"});
+    const venue = comp.venue&&comp.venue.fullName ? " · "+comp.venue.fullName : "";
+    const time = nextGameDate.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
+    $("gameMeta").textContent = time + venue;
+  }catch(e){
+    $("gameVs").textContent="Schedule unavailable";
+    $("gameWhen").textContent="";
   }
 }
-
-/* ── TICKER ────────────────────────────────────── */
-function renderTicker(launches){
-  const items = launches.map(l=>{
-    const stat=l.status?.abbrev||'TBD';
-    const cls=stat==='GO'?'go-tag':stat==='Hold'?'warn-tag':'';
-    const cd=countdown(l.net).str;
-    return `<span class="${cls}">${l.name||'TBD'}</span>&nbsp;[${cd}]&nbsp;<span class="sep">·</span>`;
-  });
-  document.getElementById('ticker').innerHTML=[...items,...items].join(' ');
+function tickCountdown(){
+  const el=$("countdown");
+  if(!nextGameDate){el.innerHTML="";return;}
+  let diff=Math.floor((nextGameDate.getTime()-Date.now())/1000);
+  if(diff<0){el.innerHTML='<div class="unit"><div class="num">LIVE</div><div class="cap">Kickoff</div></div>';return;}
+  const d=Math.floor(diff/86400);diff-=d*86400;
+  const h=Math.floor(diff/3600);diff-=h*3600;
+  const m=Math.floor(diff/60);const s=diff-m*60;
+  const u=(n,c)=>`<div class="unit"><div class="num">${String(n).padStart(2,"0")}</div><div class="cap">${c}</div></div>`;
+  el.innerHTML=u(d,"Days")+'<div class="colon">:</div>'+u(h,"Hrs")+'<div class="colon">:</div>'+u(m,"Min")+'<div class="colon">:</div>'+u(s,"Sec");
 }
 
-/* ── DATE / REFRESH ────────────────────────────── */
-function setTodayDate(){
-  document.getElementById('today-date').textContent =
-    new Date().toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'}).toUpperCase();
-}
-
-function startRefreshTimer(){
-  // Refresh at 00:00, 08:00, and 16:00 local time — find the next one
-  function nextRefresh(){
-    const now = new Date();
-    const times = [0, 8, 16]; // hours
-    for(const hr of times){
-      const t = new Date(now);
-      t.setHours(hr, 0, 0, 0);
-      if(t.getTime() > now.getTime()) return t.getTime();
-    }
-    // All of today's slots have passed — roll to midnight tomorrow
-    const t = new Date(now);
-    t.setHours(24, 0, 0, 0);
-    return t.getTime();
-  }
-  let target = nextRefresh();
-  setInterval(()=>{
-    const left=target-Date.now();
-    if(left<=0){ location.reload(); return; }
-    const h=Math.floor(left/3600000),
-          m=Math.floor((left%3600000)/60000),
-          s=Math.floor((left%60000)/1000);
-    document.getElementById('refreshCountdown').textContent=
-      `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  },1000);
-}
-
-function startCardCountdowns(launches){
-  setInterval(()=>{
-    launches.slice(1).forEach((l,i)=>{
-      const el=document.querySelector(`.card[data-idx="${i+1}"] .card-cd`);
-      if(el) el.textContent=countdown(l.net).str;
+/* ---------- Roster + Injuries ---------- */
+async function loadRoster(){
+  try{
+    const data = await getJSON(`${SITE}/teams/${TEAM_ID}/roster`);
+    const groups = data.athletes||[];
+    let html="", total=0;
+    const labels={offense:"Offense",defense:"Defense",specialTeam:"Special Teams"};
+    const injuries=[];
+    groups.forEach(g=>{
+      const items=g.items||[];
+      if(!items.length) return;
+      html+=`<div class="grouphd">${labels[g.position]||g.position}</div>`;
+      items.forEach(p=>{
+        total++;
+        const pos=(p.position&&(p.position.abbreviation||p.position.name))||"";
+        const num=p.jersey||"–";
+        const nm=p.fullName||p.displayName||"";
+        if(nm) ROSTER_NAMES.push(nm);
+        let inj="";
+        if(p.injuries&&p.injuries.length){
+          const st=(p.injuries[0].status||p.injuries[0].type&&p.injuries[0].type.description||"").trim();
+          if(st && !/active/i.test(st)){
+            const cls=/out|ir|injured reserve|pup|doubtful/i.test(st)?"out":"q";
+            inj=`<span class="badge ${cls}">${st}</span>`;
+            injuries.push({name:p.fullName||p.displayName,pos,status:st,cls});
+          }
+        }
+        html+=`<div class="row"><span class="jersey">${num}</span><span class="nm">${p.fullName||p.displayName||""}</span>${inj}<span class="pos">${pos}</span></div>`;
+      });
     });
-  },15000);
-}
-
-/* ── INIT ──────────────────────────────────────── */
-async function init(){
-  setTodayDate();
-  startRefreshTimer();
-  let launches=[];
-  try {
-    // Detailed mode (no mode=list) returns full pad objects with name + lat/lon.
-    // limit kept modest to respect the API's stricter rate limit on detailed calls.
-    const res=await fetch('https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=9&format=json');
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data=await res.json();
-    launches=data.results||[];
-  } catch(err){
-    document.getElementById('launchGrid').innerHTML=
-      `<div class="error-msg">⚠ API ERROR: ${err.message}<br><small>Page will auto-retry at the next scheduled refresh (00:00 / 08:00 / 16:00).</small></div>`;
-    return;
+    $("roster").innerHTML = html || '<div class="empty">No roster data.</div>';
+    $("rosterCt").textContent = total?total+" players":"";
+    renderInjuries(injuries);
+    buildPlayerList();
+  }catch(e){
+    $("roster").innerHTML='<div class="err">Roster feed unavailable right now.</div>';
+    $("injuries").innerHTML='<div class="err">Injury feed unavailable.</div>';
   }
-  // Render instant content first — these must never wait on the weather network call
-  renderGrid(launches);
-  renderTicker(launches);
-  startCardCountdowns(launches);
-  // Hero last; its internal weather fetch resolves on its own without blocking the above
-  renderHero(launches[0]||null);
-
-  // Recent launches — separate, non-blocking fetch (ordered most-recent first)
-  fetchRecent();
+}
+function renderInjuries(list){
+  if(!list.length){ $("injuries").innerHTML='<div class="empty">No injuries reported. 🏈</div>'; $("injCt").textContent="0"; return; }
+  $("injCt").textContent=list.length;
+  $("injuries").innerHTML=list.map(p=>
+    `<div class="row"><span class="nm">${p.name}</span><span class="badge ${p.cls}">${p.status}</span><span class="pos">${p.pos}</span></div>`
+  ).join("");
 }
 
-async function fetchRecent(){
-  try {
-    const res=await fetch('https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=3&format=json&ordering=-net');
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data=await res.json();
-    const recent=data.results||[];
-    renderRecent(recent);
-    startRecentCountUp();
-  } catch(e){
-    // Silent — recent strip just stays hidden if it fails
-    document.getElementById('recentSection').style.display='none';
+/* ---------- News + Ticker ---------- */
+async function loadNews(){
+  try{
+    const data = await getJSON(`${SITE}/news?limit=14`);
+    const arts=(data.articles||[]).filter(a=>a.headline);
+    if(!arts.length){ $("news").innerHTML='<div class="empty">No headlines.</div>'; return; }
+    // surface Commanders/Washington items first
+    arts.sort((a,b)=>{
+      const ka=/command|washington/i.test((a.headline||"")+(a.description||""))?0:1;
+      const kb=/command|washington/i.test((b.headline||"")+(b.description||""))?0:1;
+      return ka-kb;
+    });
+    $("news").innerHTML=arts.slice(0,9).map(a=>{
+      const href=(a.links&&a.links.web&&a.links.web.href)||"#";
+      const when=a.published?`<div class="tm">${relTime(a.published)}</div>`:"";
+      const ds=a.description?`<div class="ds">${a.description}</div>`:"";
+      return `<a href="${href}" target="_blank" rel="noopener"><div class="hl">${a.headline}</div>${ds}${when}</a>`;
+    }).join("");
+    const heads=arts.slice(0,12).map(a=>a.headline);
+    const line=heads.concat(heads).map(h=>`<span>${h}</span>`).join("");
+    $("ticker").innerHTML=line;
+  }catch(e){
+    $("news").innerHTML='<div class="err">News feed unavailable right now.</div>';
   }
 }
 
-init();
+/* ---------- NFC East ---------- */
+async function loadEast(){
+  try{
+    const results = await Promise.all(EAST.map(t=>
+      getJSON(`${SITE}/teams/${t.id}`).then(d=>({cfg:t,team:d.team})).catch(()=>({cfg:t,team:null}))
+    ));
+    const rows = results.map(r=>{
+      const t=r.team;
+      const logo=t&&t.logos&&t.logos[0]?t.logos[0].href:"";
+      let rec="—";
+      if(t&&t.record&&t.record.items&&t.record.items[0]) rec=t.record.items[0].summary||"—";
+      const name=(t&&t.shortDisplayName)||r.cfg.name;
+      const me=r.cfg.id===TEAM_ID?" me":"";
+      return {me,html:`<div class="row${me}"><div class="tinfo">${logo?`<img src="${logo}" alt="">`:""}<span class="tn">${name}</span></div><span class="rec">${rec}</span></div>`};
+    });
+    $("east").innerHTML = rows.map(r=>r.html).join("");
+  }catch(e){
+    $("east").innerHTML='<div class="err">Division feed unavailable.</div>';
+  }
+}
+
+/* ---------- Locked On Commanders podcast ---------- */
+function podFallback(){
+  $("pod").innerHTML=`<div class="podlinks">
+    <a href="https://www.youtube.com/@LockedOnCommanders" target="_blank" rel="noopener">▶ YouTube</a>
+    <a href="https://open.spotify.com/show/4F9T8e4JLYDZrvOAW0MPrf" target="_blank" rel="noopener">▶ Spotify</a>
+    <a href="https://podcasts.apple.com/us/podcast/id${PODCAST_APPLE_ID}" target="_blank" rel="noopener">▶ Apple Podcasts</a>
+  </div>`;
+}
+async function loadPodcast(){
+  try{
+    // 1) resolve live RSS feed from Apple lookup (CORS-friendly)
+    const look = await getJSON(`https://itunes.apple.com/lookup?id=${PODCAST_APPLE_ID}&entity=podcast`);
+    const feed = look.results&&look.results[0]&&look.results[0].feedUrl;
+    if(!feed) throw new Error("no feed");
+    // 2) parse feed to JSON (CORS-friendly), grab newest 3
+    const rss = await getJSON(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}&count=3`);
+    const items=(rss.items||[]).slice(0,3);
+    if(!items.length) throw new Error("no items");
+    $("pod").innerHTML=items.map(it=>{
+      const when=it.pubDate?new Date(it.pubDate).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}):"";
+      return `<a href="${it.link}" target="_blank" rel="noopener"><span class="play">▶</span><div><div class="et">${it.title}</div><div class="ed">${when}</div></div></a>`;
+    }).join("");
+  }catch(e){
+    podFallback();
+  }
+}
+
+/* ---------- Film Room drawer ---------- */
+function buildPlayerList(){
+  const dl=$("playerList"); if(!dl) return;
+  const uniq=[...new Set(ROSTER_NAMES)].sort();
+  dl.innerHTML=uniq.map(n=>`<option value="${n}">`).join("");
+}
+function openFilm(){ $("scrim").classList.add("open"); $("drawer").classList.add("open"); $("drawer").setAttribute("aria-hidden","false"); }
+function closeFilm(){ $("scrim").classList.remove("open"); $("drawer").classList.remove("open"); $("drawer").setAttribute("aria-hidden","true"); }
+function pfrPlayer(name){
+  const q=(name||"").trim(); if(!q) return;
+  window.open("https://www.pro-football-reference.com/search/search.fcgi?search="+encodeURIComponent(q),"_blank","noopener");
+}
+function pffPlayer(name){
+  const q=(name||"").trim(); if(!q) return;
+  // PFF player URLs aren't constructable from a name, so route via a site-scoped search that lands on the player page
+  window.open("https://www.google.com/search?q="+encodeURIComponent("site:pff.com "+q),"_blank","noopener");
+}
+$("filmOpen").addEventListener("click",openFilm);
+$("filmClose").addEventListener("click",closeFilm);
+$("scrim").addEventListener("click",closeFilm);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeFilm(); });
+$("pfrGo").addEventListener("click",()=>pfrPlayer($("pfrInput").value));
+$("pfrInput").addEventListener("keydown",e=>{ if(e.key==="Enter") pfrPlayer($("pfrInput").value); });
+$("pffGo").addEventListener("click",()=>pffPlayer($("pffInput").value));
+$("pffInput").addEventListener("keydown",e=>{ if(e.key==="Enter") pffPlayer($("pffInput").value); });
+
+/* ---------- orchestrate ---------- */
+function stamp(){ $("updated").textContent="Updated "+new Date().toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}); }
+async function refreshAll(){
+  await Promise.allSettled([loadSchedule(),loadRoster(),loadNews(),loadEast(),loadPodcast()]);
+  stamp();
+}
+refreshAll();
+setInterval(refreshAll,300000); // 5 min
+setInterval(tickCountdown,1000);
 </script>
 </body>
 </html>
