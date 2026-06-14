@@ -1,3 +1,4 @@
+<!-- © 2026 Roderick Grimes. All rights reserved. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,6 +214,11 @@
   .links a:hover .ar{color:var(--gold)}
   .drawer-note{font-family:'Barlow Condensed';font-size:12.5px;letter-spacing:.4px;color:var(--muted-2);line-height:1.5;border-top:1px solid var(--line-soft);padding-top:14px}
   .drawer-note .g{color:var(--gold-dim)}
+  /* ===== Betting drawer ===== */
+  .bet-launch{position:fixed;right:22px;bottom:84px;z-index:40;display:flex;align-items:center;gap:10px;background:var(--bg-2);color:var(--gold);font-family:'Oswald';font-weight:700;letter-spacing:1.5px;font-size:14px;text-transform:uppercase;border:1px solid var(--gold);border-radius:50px;padding:13px 22px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .15s,background .15s,color .15s}
+  .bet-launch:hover{transform:translateY(-2px);background:var(--gold);color:var(--bg)}
+  .bet-launch .ic{font-size:16px}
+  .links a.feat{border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -556,6 +562,51 @@ async function refreshAll(){
 refreshAll();
 setInterval(refreshAll,300000); // 5 min
 setInterval(tickCountdown,1000);
+</script>
+
+<div style="margin:28px auto 0;max-width:1080px;padding:14px 16px 6px;border-top:1px solid #27313D;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3;text-align:center">© 2026 R. Grimes · All rights reserved</div>
+<button class="bet-launch" id="betOpen"><span class="ic">💰</span> Betting</button>
+<aside class="drawer" id="betDrawer" aria-hidden="true">
+  <div class="drawer-hd">
+    <span class="bar"></span>
+    <h2>Betting</h2>
+    <button id="betClose" aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div class="src">
+      <div class="src-hd"><span class="nm">Sportsbooks</span><span class="tag">Place your bets</span></div>
+      <div class="links">
+        <a class="feat" href="https://sportsbook.fanduel.com" target="_blank" rel="noopener">FanDuel <span class="ar">↗</span></a>
+        <a href="https://sportsbook.draftkings.com" target="_blank" rel="noopener">DraftKings <span class="ar">↗</span></a>
+        <a href="https://espnbet.com" target="_blank" rel="noopener">ESPN BET <span class="ar">↗</span></a>
+        <a href="https://sports.betmgm.com" target="_blank" rel="noopener">BetMGM <span class="ar">↗</span></a>
+        <a href="https://www.caesars.com/sportsbook-and-casino" target="_blank" rel="noopener">Caesars <span class="ar">↗</span></a>
+        <a href="https://www.bet365.com" target="_blank" rel="noopener">bet365 <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="src">
+      <div class="src-hd"><span class="nm">Odds &amp; Lines</span><span class="tag">NFL · Compare the board</span></div>
+      <div class="links">
+        <a href="https://www.vegasinsider.com/nfl/odds/las-vegas/" target="_blank" rel="noopener">VegasInsider — NFL Lines <span class="ar">↗</span></a>
+        <a href="https://www.oddsshark.com/nfl/odds" target="_blank" rel="noopener">OddsShark — NFL Odds <span class="ar">↗</span></a>
+        <a href="https://www.actionnetwork.com/nfl/odds" target="_blank" rel="noopener">Action Network — NFL <span class="ar">↗</span></a>
+      </div>
+    </div>
+    <div class="drawer-note">Must be <span class="g">21+</span> and physically located where betting is legal. If you or someone you know has a gambling problem, call <span class="g">1-800-GAMBLER</span>.</div>
+  </div>
+</aside>
+<script>
+(function(){
+  var scrim=document.getElementById('scrim'),
+      bet=document.getElementById('betDrawer'),
+      film=document.getElementById('drawer');
+  function openBet(){ if(film)film.classList.remove('open'); bet.classList.add('open'); if(scrim)scrim.classList.add('open'); bet.setAttribute('aria-hidden','false'); }
+  function closeBet(){ bet.classList.remove('open'); if(scrim&&!(film&&film.classList.contains('open')))scrim.classList.remove('open'); bet.setAttribute('aria-hidden','true'); }
+  var bo=document.getElementById('betOpen'); if(bo)bo.addEventListener('click',openBet);
+  var bc=document.getElementById('betClose'); if(bc)bc.addEventListener('click',closeBet);
+  if(scrim)scrim.addEventListener('click',closeBet);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape')closeBet(); });
+})();
 </script>
 </body>
 </html>
